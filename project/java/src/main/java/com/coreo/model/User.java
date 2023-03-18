@@ -10,18 +10,24 @@ public class User {
 
    private int id;
    private String username;
+   private String email;
    @JsonIgnore
    private String password;
+   private String profilePicture;
+   private String bio;
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
+   public User(int id, String username, String email, String password, String profilePicture, String bio, String authorities) {
       this.id = id;
       this.username = username;
+      this.email = email;
       this.password = password;
+      this.profilePicture = profilePicture;
+      this.bio = bio;
       if(authorities != null) this.setAuthorities(authorities);
       this.activated = true;
    }
@@ -42,12 +48,36 @@ public class User {
       this.username = username;
    }
 
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
    public String getPassword() {
       return password;
    }
 
    public void setPassword(String password) {
       this.password = password;
+   }
+
+   public String getProfilePicture() {
+      return profilePicture;
+   }
+
+   public void setProfilePicture(String profilePicture) {
+      this.profilePicture = profilePicture;
+   }
+
+   public String getBio() {
+      return bio;
+   }
+
+   public void setBio(String bio) {
+      this.bio = bio;
    }
 
    public boolean isActivated() {
@@ -82,13 +112,16 @@ public class User {
       return id == user.id &&
               activated == user.activated &&
               Objects.equals(username, user.username) &&
+              Objects.equals(email, user.email) &&
               Objects.equals(password, user.password) &&
+              Objects.equals(profilePicture, user.profilePicture) &&
+              Objects.equals(bio, user.bio) &&
               Objects.equals(authorities, user.authorities);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, activated, authorities);
+      return Objects.hash(id, username, email, password, profilePicture, bio, activated, authorities);
    }
 
    @Override
@@ -96,7 +129,10 @@ public class User {
       return "User{" +
               "id=" + id +
               ", username='" + username + '\'' +
+              ", email='" + email + '\'' +
               ", activated=" + activated +
+              ", profilePicture='" + profilePicture +
+              ", bio='" + bio +
               ", authorities=" + authorities +
               '}';
    }
