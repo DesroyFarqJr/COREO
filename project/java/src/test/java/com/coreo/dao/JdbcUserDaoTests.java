@@ -1,6 +1,6 @@
-package com.techelevator.dao;
+package com.coreo.dao;
 
-import com.techelevator.model.User;
+import com.coreo.model.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

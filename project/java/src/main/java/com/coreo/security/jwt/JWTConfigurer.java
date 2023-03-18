@@ -1,4 +1,4 @@
-package com.techelevator.security.jwt;
+package com.coreo.security.jwt;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

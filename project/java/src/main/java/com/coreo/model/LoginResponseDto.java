@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.coreo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /*
