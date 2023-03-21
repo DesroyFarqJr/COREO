@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, videos, likes, comments, followers, favorites, hashtags, video_hashtags, analytics, challenges, challenge_videos, collaborations, filters, filter_videos, categories, interests, notifications;
+DROP TABLE IF EXISTS users, videos, likes, comments, followers, favorites, hashtags, video_hashtags, analytics, challenges,
+challenge_videos, collaborations, filters, filter_videos, categories, interests, notifications, messages;
 
 CREATE TABLE users (
 	user_id SERIAL PRIMARY KEY,
@@ -120,19 +121,19 @@ CREATE TABLE filter_videos (
 	FOREIGN KEY (video_id) REFERENCES videos(video_id),
 	FOREIGN KEY (filter_id) REFERENCES filters(filter_id)
 );
-
-CREATE TABLE categories (
-	category_id SERIAL PRIMARY KEY,
-	name VARCHAR(255) NOT NULL,
-	description TEXT
-);
-
+--TBD, algorithm. looking into an algorithm
+--CREATE TABLE categories (
+--	category_id SERIAL PRIMARY KEY,
+--	name VARCHAR(255) NOT NULL,
+--	description TEXT
+--);
+--TBD, algorithm. looking into an algorithm
 CREATE TABLE interests (
 interest_id SERIAL PRIMARY KEY,
 user_id INTEGER NOT NULL,
-category_id INTEGER NOT NULL,
+--category_id INTEGER NOT NULL,
 FOREIGN KEY (user_id) REFERENCES users(user_id),
-FOREIGN KEY (category_id) REFERENCES categories(category_id)
+--FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
 CREATE TABLE notifications (
@@ -146,5 +147,13 @@ FOREIGN KEY (user_id) REFERENCES users(user_id),
 FOREIGN KEY (video_id) REFERENCES videos(video_id)
 );
 
+CREATE TABLE messages (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  sender_id INT NOT NULL,
+  recipient_id INT NOT NULL,
+  message_text VARCHAR(500) NOT NULL,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+  is_read BOOLEAN DEFAULT false
+);
 
 COMMIT TRANSACTION;

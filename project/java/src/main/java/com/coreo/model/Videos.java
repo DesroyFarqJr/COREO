@@ -1,7 +1,7 @@
 package com.coreo.model;
 
 public class Videos {
-    private int id;
+    private int videosId;
     private int userId;
     private String title;
     private String description;
@@ -11,8 +11,8 @@ public class Videos {
     private String thumbnailName;
 
     public Videos(){}
-    public Videos(int id, int userId, String title, String description, String[] tags, int duration, String fileName, String thumbnailName) {
-        this.id = id;
+    public Videos(int videosId, int userId, String title, String description, String[] tags, int duration, String fileName, String thumbnailName) {
+        this.videosId = videosId;
         this.userId = userId;
         this.title = title;
         this.description = description;
@@ -23,11 +23,11 @@ public class Videos {
     }
 
     public int getId() {
-        return id;
+        return videosId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.videosId = id;
     }
 
     public int getUserId() {
