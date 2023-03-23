@@ -6,6 +6,9 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Profile from '../components/Profile.vue'
+import HomeSideNav from '../components/HomeSideNav.vue'
+import Friends from '../views/Friends.vue'
+import Trending from '../views/Trending.vue'
 
 Vue.use(Router)
 
@@ -23,11 +26,35 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/forYouPage',
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      component: Friends,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/trending',
+      name: 'trending',
+      component: Trending,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/SideNav',
+      name: 'SideNave',
+      component: HomeSideNav,
+      meta: {
+        requiresAuth: false
       }
     },
     {
