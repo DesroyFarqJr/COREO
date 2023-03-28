@@ -14,7 +14,8 @@
   
     <div class="button-container">
       <button class="btn btn-primary">Upload</button>
-      <button class="btn btn-secondary">Login</button>
+      
+      <router-link class="btn btn-secondary" to="/login">Login</router-link>
     </div>
     </div>
     <!-- <div id="nav">

@@ -1,6 +1,6 @@
 <template>
 
-  <!--  -->
+  <!-- Login box  -->
     <div class="auth-wrapper">
       <div class="auth-inner">
         <div id="login" class="text-center">
@@ -35,6 +35,11 @@
             />
           
             <button class="reg" type="submit">Sign in</button>
+          <div>
+            <button>
+
+            </button>
+          </div>
           </div>
          
           <div class="button-container">
@@ -56,6 +61,7 @@
 
 <script>
 import authService from "../services/AuthService";
+import { inject } from 'vue';
 
 
 export default {
@@ -72,7 +78,33 @@ export default {
       
     };
   },
+  setup() {
+    const Vue3GoogleOauth = inject('Vue3GoogleOauth');
+
+    return {
+      Vue3GoogleOauth,
+    };
+  },
+
+data() {
+  return {
+    user: '',
+  }
+},
+
   methods: {
+
+    async handleSignIn() {
+      const googleUser = await this.$Auth.signIn();
+
+
+      if(!googleUser) {
+        return null;
+      }
+
+      this.user = googleUser.getBasicProfile().getEmail();
+    },
+
     login() {
       authService
         .login(this.user)
