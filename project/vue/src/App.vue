@@ -14,7 +14,6 @@
   
     <div class="button-container">
       <button class="btn btn-primary">Upload</button>
-      
       <router-link class="btn btn-secondary" to="/login">Login</router-link>
     </div>
     </div>
