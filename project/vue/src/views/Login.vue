@@ -1,6 +1,6 @@
 <template>
 
-  <!-- Login box  -->
+  <!--  -->
     <div class="auth-wrapper">
       <div class="auth-inner">
         <div id="login" class="text-center">
@@ -35,13 +35,16 @@
             />
           
             <button class="reg" type="submit">Sign in</button>
-          <div>
-            <button>
-
-            </button>
           </div>
-          </div>
-         
+          <!-- Google login OAuth button  -->
+          <div class="googleBtnDiv">
+            <div v-google-signin-button="clientId" class="google-signin-button">
+                <img alt="Google sign-in"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                <span>Continue Login with Google</span>
+            </div>
+         </div>
+         <!-- Google login OAuth button -->
           <div class="button-container">
 <router-link id="registration-link" :to="{ name: 'register' }"
               >Don't have an account?</router-link>
@@ -60,51 +63,39 @@
 </template>
 
 <script>
-import authService from "../services/AuthService";
-import { inject } from 'vue';
+import authService from "../services/AuthService"
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 
 
 export default {
+  directives: {
+    GoogleSignInButton
+  },
   
   name: "login", 
   components: {},
   data() {
+
     return {
-      user: {
+      user: {},
         username: "",
-        password: ""
-      },
+        password: "",
+        clientId: '825377734470-6ltc51va8eqarc6cg5ilt8qun3mk7416.apps.googleusercontent.com',
       invalidCredentials: false
       
     };
   },
-  setup() {
-    const Vue3GoogleOauth = inject('Vue3GoogleOauth');
-
-    return {
-      Vue3GoogleOauth,
-    };
-  },
-
-// data() {
-//   return {
-//     user: '',
-//   }
-// },
-
   methods: {
-
-    async handleSignIn() {
-      const googleUser = await this.$Auth.signIn();
-
-
-      if(!googleUser) {
-        return null;
-      }
-
-      this.user = googleUser.getBasicProfile().getEmail();
+    OnGoogleAuthSuccess (idToken) {
+      console.log("Received idToken:", idToken);
+      // Receive the idToken and make your magic with the backend
+      if (!idToken) {
+                    this.errorMesg = "Problem login to google."
+                    return;
+    }},
+    OnGoogleAuthFail (error) {
+      console.log(error)
     },
-
     login() {
       authService
         .login(this.user)
@@ -132,6 +123,38 @@ export default {
 /*  */
 
 /*  */
+.google-signin-button {
+        width: inherit;
+        padding: 3px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        display: inline-block;
+        border: 1px solid #888;
+        border-radius: 3px;
+        background-color: transparent;
+        outline: none;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: normal;
+        line-height: 1.15384615;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+    }
+.google-signin-button img {
+        margin: 2px 15px 2px 20px;
+        width: 20px;
+        vertical-align: middle;
+    }
+
+    .googleBtnDiv {
+        padding: 0;
+        height: 50px;
+        text-align: center;
+    }
+
 * {
   box-sizing: border-box;
 }
