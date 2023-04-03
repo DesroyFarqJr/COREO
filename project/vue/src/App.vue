@@ -1,52 +1,65 @@
 <template>
-  
   <div id="app">
-    <div class="login">
-    <div class="navbar">
-    <a class="navbar-brand" href="#">
-      <img src="../public/images/Coreo logo.png" alt="Logo">
-    </a>
-    <div class="search-container">
-      <input type="text" placeholder="Search" />
-     
-      <img  class="searchIcon" src="../public/images/searchButton.png" alt="Search Icon">
+    <div class="header">
+      <router-link v-bind:to="{ name: 'home' }" class="logo">
+        <img src="../public/images/Coreo logo.png" alt="logo" id="logo">
+      </router-link>
+      <!-- call the SearchBar component -->
+      <SearchBar></SearchBar>
+      <!-- this will be a router -->
+      <div class="button-container">
+        <button class="btn btn-primary">Upload</button>
+        <router-link class="btn btn-secondary" to="/login">Login</router-link>
+        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      </div>
     </div>
-  
-    <div class="button-container">
-      <button class="btn btn-primary">Upload</button>
-      
-      <router-link class="btn btn-secondary" to="/login">Login</router-link>
+    <div class="side-nav" v-if="$route.path !== '/login' && $route.path !== '/register'">
+      <HomeSideNav></HomeSideNav>
     </div>
-    </div>
-    <!-- <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div> -->
-    
-    <router-view />
+    <div class="content" id="content">
+     <router-view /> 
     </div>
   </div>
 </template>
+
 <script>
+import HomeSideNav from './components/HomeSideNav.vue';
+import SearchBar from './components/SearchBar.vue';
+
 export default {
-  
-  name: "login", 
+  name: "app",
   components: {
-    
-    
+    HomeSideNav,
+    SearchBar,
   },
   data() {
     return {
       invalidCredentials: false,
-      
     };
   },
- 
 };
 </script>
+
 <style>
-/* Top nav bar design settings */
-.navbar {
+@import url("https://fonts.googleleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+
+#app {
+  display: grid; 
+  grid-template-columns: 1fr 4fr; 
+  grid-template-rows: 1fr 8fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "header header"
+    "side-nav content"; 
+}
+
+.header {
+  grid-area: header;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; 
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,111 +67,90 @@ export default {
   background-color: #fff;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 0 transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
   height: 60px;
 }
+
+.content {
+  grid-area: content;
+  position: relative;
+  height: calc(100vh - 60px);
+  overflow: auto;
+} 
+
+.side-nav{
+  grid-area: side-nav;
+  position: fixed;
+  top: 60px;
+}
+
 /* Logo customization */
-.navbar-brand {
+.logo{
   display: flex;
   align-items: center;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  
 }
 
-.navbar-brand img {
+.logo img {
   height: 50px;
   margin-right: 0.5rem;
 }
-/* Search bar (npm installed fontawesome for search icon) */
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  background-color: #f2f2f2;
-  padding: 0.5rem;
-  width: 40%;
-  box-sizing: border-box;
-}
 
-.searchIcon{
-  height: 18px;
-
-}
-.search-container input[type="text"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin-left: 0.5rem;
-  width: 100%;
-}
-
-.search-container .fa-search {
-  margin-right: 0.5rem;
-  color: #ccc;
-}
 /* Upload and Login button design */
 .button-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 20px;
-}
-.btn {
-  margin-left: 1rem;
+  width: 240px; /* add this */
 }
 
-.btn-primary {
+.btn-primary, .btn-secondary {
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  border-radius: 0px;
+  font-weight: 600;
+  margin: 0 10px;
+  padding: 10px 0;
+  transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; 
+}
+
+.btn-primary{
   background-color: #e8e7e7;
   color: #333;
-  cursor: pointer;
-  border: 0;
-  border-radius: 4px;
-  font-weight: 600;
-  margin: 0 10px;
-  width: 100px;
-  padding: 10px 0;
-  /* box-shadow: 0 0 20px rgba(104, 85, 224, 0.2); */
-  transition: 0.4s;
 }
-
 .btn-secondary {
   background-color: #7e28ff;
-  font-style: strong;
   color: #f7f7f7;
-  border: none;
-  cursor: pointer;
-  border: 0;
-  border-radius: 4px;
-  font-weight: 600;
-  margin: 0 10px;
-  width: 100px;
-  padding: 10px 0;
-  /* box-shadow: 0 0 20px rgba(104, 85, 224, 0.2); */
-  transition: 0.4s;
-  
 }
 
-.btn:hover {
-  cursor: pointer;
+.btn-primary:hover {
+  background-color: #7e28ff;
+  color: #ffffff;
 }
-/* Responsive CSS  */
+
+.btn-secondary:hover {
+  background-color: #e1dfdf;
+  color: #080609;
+}
+
+/* Responsive CSS */
 @media (max-width: 768px) {
-  .login {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-  }
-
-  .search-container {
-    margin: 1rem 0;
-  }
+.header {
+flex-direction: column;
+align-items: flex-start;
+padding: 1rem;
 }
+
+.search-container {
+margin: 1rem 0;
+}
+}
+
 </style>

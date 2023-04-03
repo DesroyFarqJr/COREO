@@ -86,11 +86,11 @@ export default {
     };
   },
 
-data() {
-  return {
-    user: '',
-  }
-},
+// data() {
+//   return {
+//     user: '',
+//   }
+// },
 
   methods: {
 

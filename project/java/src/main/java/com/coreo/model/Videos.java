@@ -27,7 +27,7 @@ public class Videos {
     }
 
     public void setId(int id) {
-        this.videosId = id;
+        this.videosId = videosId;
     }
 
     public int getUserId() {

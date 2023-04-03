@@ -1,139 +1,107 @@
 <template>
-    <div>
-        <form id="form">
-            <!-- container for side navigation buttons -->
-            <div class="sideNav-container">
-                <div class="one">
-                <a href="/forYouPage" class="homeBtn">
-                <img class="homeBtn" src="../../public/images/icons8-home-24.png" alt="homeBtn" />
-                </a> <h2> For You</h2>
-                </div>
-            
-            <div class="one">
-            <a href="/friends" class="hugBtn">
-            <img class="friendsPosts" src="../../public/images/icons8-hug-50.png" alt="friendsBtn" />
-            </a><h2> Friends</h2>
-            </div>
-            <div class="one">
-            <a href="/trending" class="starBtn">
-            <img class="trending" src="../../public/images/icons8-pixel-star-50.png" alt="friendsBtn" />
-            </a><h2> Top Posts</h2></div>
-</div>
-<hr class="lineBreak" > 
-<h4> Log in to follow creators, like videos, and view comments</h4>
-
-<!--  hr adds line breaks between sections -->
-<button class="btn-secondary" type="submit">Login</button>
-<!-- hr adds line breaks between sections -->
-
-<hr class="lineBreak"> 
-<h4> Suggested Accounts</h4>
-<!-- Logic goes here to show popular accounts -->
-<div>
-<a href="/friends" class="hugBtn">
-<img class="placeholder" src="../../public/images/placeholderimg.png" alt="placeholder"/></a>
-</div>
-<h3>See all</h3>
-<hr class="lineBreak"> 
-<h3> Discover</h3>
-        </form>
-
-    </div>
+  <div id="side-nav">
+    <router-link v-bind:to="{ name: 'for-you' }" class="main-three">
+      <img class="homeBtn" src="/images/home.png" alt="homeBtn"/> For You
+    </router-link>
+    <router-link v-bind:to="{ name: 'friends-posts' }" class="main-three">
+      <img class="friendsPosts" src="/images/hug.png" alt="friendsBtn"/> Friends
+    </router-link>
+    <router-link v-bind:to="{ name: 'top-posts' }" class="main-three">
+      <img class="trending" src="/images/star.png" alt="topPostsBtn"/> Top Posts
+    </router-link>    
+    <hr class="lineBreak"> 
+    <h3>Log in to follow creators, like videos, and view comments</h3>
+    <router-link v-bind:to="{ name: 'login' }" class="btn-secondary">Log In</router-link>
+    <hr class="lineBreak"> 
+    <router-link v-bind:to="{ name: 'suggested-accounts' }" class="suggested" >Suggested Accounts</router-link>
+    <hr class="lineBreak"> 
+    <router-link v-bind:to="{ name: 'discover' }" class="suggested">Discover</router-link>
+  </div>
 </template>
+
 <script>
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-    setup() {
-        
-    },
+  setup() {
+  },
 })
 </script>
 
 <style scoped>
-@import url("https://fonts.googleleapis.com/css?family=Fira+Sans:400,500,600,700,800");
-
-.sideNav-container img {
+#side-nav {
+  position: relative;
+  top: 35px;
+  margin: 0;
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
-  height: auto;
-  width: auto;
-  padding: 0;
+  max-width: 300px;
+  font-size: 18px;
+}
+
+
+#side-nav > * {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 16px;
+}
+
+#side-nav > hr {
   margin: 0;
-  left: 0;
-  padding: 1em;;;
-}
-.sideNav-container{
-    padding-top: 100px;
-    
-    margin: 0;
-    font-family: sans-serif;
-
-    display: flex;
-  flex-direction: column;
-}
-h4{
-    font-weight: 70;
-    font-family: sans-serif;
-    color: lightslategrey;
-}
-.one{
-    display: inline-flex;
-
-}
-hr {
-    text-align: left;
-    max-width: 800px
-}
-hr.lineBreak{
-    
-  border: 0;
-  border-top: 3px solid rgb(202, 202, 202);
-  width: 400px;
-  font-weight: lighter;
-  margin: 0;
-  padding-top: 5px;
-  padding-bottom: 10px;
-
-}
-h2{
-    color: rgb(71, 71, 71);
-    font-weight: normal;
-}
-.btn-secondary {
-  background-color: #7e28ff;
-  font-style: strong;
-  color: #f7f7f7;
   border: none;
+  border-top: 3px solid #eee;
+}
+
+
+#side-nav > h3 {
+  margin: 0;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  color: #7e28ff;
+  font-size: 16px;
+}
+
+#side-nav > .suggested{
+  margin: 0;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 15px;
+}
+
+.btn-secondary {
+  background-color: #e1dfdf;
+  color: #080609;
+  border: 2px solid #7e28ff;
   cursor: pointer;
-  border: 0;
-  font-family: sans-serif;
-  border-radius: 4px;
-  font-weight: 600;
-  margin: 0 10px;
-  width: 200px;
-  height: 50px;
-  padding: 10px 0;
-  
-  
-  /* box-shadow: 0 0 20px rgba(104, 85, 224, 0.2); */
-  transition: 0.4s;
-  
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  border-radius: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
 }
 
-button{
-    padding-bottom: 20px;
-}
-.homeBtn img{
-    height: 50px;
-    width: 50px;
-    padding: 1em;
 
+#side-nav .btn-secondary:hover {  
+  background-color: #7e28ff;
+  color: #ffffff;
 }
-h3{
-   color: #7e28ff;
-    font-weight: 600px;
-    font-family: sans-serif;
+
+#side-nav > a > img {
+  height: 33px;
+  width: 33px;
+  margin-right: 8px;
+}
+
+#side-nav > .main-three:hover{ 
+  background-color: #6564640f;
 }
 </style>

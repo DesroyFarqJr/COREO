@@ -7,19 +7,16 @@
     </div>
     <div ref="observer"></div>
   </div>
-   <home-side-nav></home-side-nav>
   </div>
 </template>
 
 <script>
-import HomeSideNav from '../components/HomeSideNav.vue';
 import VideoItem from "@/components/VideoItem.vue";
 
 export default {
   name: "Home", 
   
   components: {
-    HomeSideNav,
     VideoItem
   },
 

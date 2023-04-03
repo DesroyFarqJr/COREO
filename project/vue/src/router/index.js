@@ -5,10 +5,16 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import Profile from '../components/Profile.vue'
-import HomeSideNav from '../components/HomeSideNav.vue'
+import ForYou from '../views/ForYou.vue'
+import Profile from '../views/Profile.vue'
 import Friends from '../views/Friends.vue'
 import Trending from '../views/Trending.vue'
+import TopPosts from '../views/TopPosts.vue'
+import SuggestedAccounts from '../views/SuggestedAccounts.vue'
+import Following from '../views/Following.vue'
+import Followers from '../views/Followers.vue'
+
+
 
 Vue.use(Router)
 
@@ -26,37 +32,13 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/forYouPage',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
         requiresAuth: false
       }
-    },
-    {
-      path: '/friends',
-      name: 'friends',
-      component: Friends,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: '/trending',
-      name: 'trending',
-      component: Trending,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: '/SideNav',
-      name: 'SideNave',
-      component: HomeSideNav,
-      meta: {
-        requiresAuth: false
-      }
-    },
+    }, 
     {
       path: "/login",
       name: "login",
@@ -80,15 +62,73 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
-    },
-   { 
+    },  
+    { 
+    path: "/for-you",
+    name: "for-you",
+    component: ForYou,
+    meta: {
+      requiresAuth: true
+    }
+   },
+    { 
     path: "/profile",
     name: "profile",
     component: Profile,
     meta: {
       requiresAuth: false
     }
-  }
+   },
+
+    {
+      path: '/friends',
+      name: 'friends-posts',
+      component: Friends,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/trending',
+      name: 'trending',
+      component: Trending,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/top-posts',
+      name: 'top-posts',
+      component: TopPosts,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/suggested-accounts',
+      name: 'suggested-accounts',
+      component: SuggestedAccounts,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/following',
+      name: 'following',
+      component: Following,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/followers',
+      name: 'followers',
+      component: Followers,
+      meta: {
+        requiresAuth: false
+      }
+    },
+  
   ]
 })
 
