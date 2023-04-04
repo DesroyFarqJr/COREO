@@ -8,7 +8,7 @@
       <SearchBar></SearchBar>
       <!-- this will be a router -->
       <div class="button-container">
-        <button class="btn btn-primary">Upload</button>
+        <router-link class="btn btn-primary" to="/cloudinarycomp">Upload</router-link>
         <router-link class="btn btn-secondary" to="/login">Login</router-link>
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>
@@ -44,7 +44,7 @@ export default {
 @import url("https://fonts.googleleapis.com/css?family=Fira+Sans:400,500,600,700,800");
 
 #app {
-  display: grid; 
+  display: flex; 
   grid-template-columns: 1fr 4fr; 
   grid-template-rows: 1fr 8fr; 
   gap: 0px 0px; 
@@ -61,6 +61,7 @@ export default {
   right: 0;
   z-index: 10; 
   display: flex;
+  flex-direction: row, row-reverse, column, column-reverse;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
@@ -68,6 +69,7 @@ export default {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 0 0 transparent;
   height: 60px;
+  
 }
 
 .content {
@@ -86,7 +88,11 @@ export default {
 /* Logo customization */
 .logo{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-direction: row;
+  flex-shrink: 0;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
@@ -103,7 +109,7 @@ export default {
   align-items: center;
   justify-content: flex-end;
   padding-right: 20px;
-  width: 240px; /* add this */
+  width: 30%; /* add this */
 }
 
 .btn-primary, .btn-secondary {
@@ -112,7 +118,7 @@ export default {
   border: 0;
   border-radius: 0px;
   font-weight: 600;
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 10px 0;
   transition: 0.4s;
   display: flex;
@@ -142,7 +148,7 @@ export default {
 
 /* Responsive CSS */
 @media (max-width: 768px) {
-.header {
+.nav-container {
 flex-direction: column;
 align-items: flex-start;
 padding: 1rem;
@@ -150,6 +156,7 @@ padding: 1rem;
 
 .search-container {
 margin: 1rem 0;
+width: 70%;
 }
 }
 

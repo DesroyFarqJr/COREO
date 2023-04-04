@@ -241,14 +241,18 @@ a {
   
 }
 .auth-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   text-align: left;
 }
 
 .auth-inner {
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
   margin: auto;
   background: #ffffff;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -288,6 +292,7 @@ a {
   align-items: center;
   justify-content: center;
   padding-top: 30px;
+  width: auto;
 }
 .reg {
   

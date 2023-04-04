@@ -3,7 +3,7 @@
   <div class="home"> 
     <div class="content">
     <div v-for="(video, index) in videos" :key="index">
-      <VideoItem :video="video"></VideoItem>
+     
     </div>
     <div ref="observer"></div>
   </div>
@@ -11,14 +11,11 @@
 </template>
 
 <script>
-import VideoItem from "@/components/VideoItem.vue";
+
 
 export default {
   name: "Home", 
   
-  components: {
-    VideoItem
-  },
 
 data() {
     return {

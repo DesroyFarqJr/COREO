@@ -13,6 +13,9 @@ import TopPosts from '../views/TopPosts.vue'
 import SuggestedAccounts from '../views/SuggestedAccounts.vue'
 import Following from '../views/Following.vue'
 import Followers from '../views/Followers.vue'
+import CloudinaryComp from '../components/CloudinaryComp.vue'
+import Homes from '../views/Homes.vue'
+
 
 
 
@@ -124,6 +127,22 @@ const router = new Router({
       path: '/followers',
       name: 'followers',
       component: Followers,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/cloudinaryComp',
+      name: 'CloudinaryComp',
+      component: CloudinaryComp,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/homes',
+      name: 'Homes',
+      component: Homes,
       meta: {
         requiresAuth: false
       }
